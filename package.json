@@ -22,9 +22,7 @@
     "lint:eslint": "eslint --fix --ext .js,.ts,.vue ./src",
     "lint:format": "prettier --write --loglevel warn \"src/**/*.{js,ts,json,tsx,css,less,scss,vue,html,md}\"",
     "lint:style": "stylelint --fix \"./src/**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
-    "lint:lint-staged": "lint-staged -c ",
-    "build": "vue-tsc --noEmit && vue-cli-service build",
-    "build:azure": "npm run build"
+    "lint:lint-staged": "lint-staged -c "
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
