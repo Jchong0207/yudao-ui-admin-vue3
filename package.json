@@ -24,7 +24,7 @@
     "lint:style": "stylelint --fix \"./src/**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
     "lint:lint-staged": "lint-staged -c ",
     "build": "npm run build:prod",
-    "build:azure": "npm run build:prodasdfa"
+    "build:azure": "npm run build:prod"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
