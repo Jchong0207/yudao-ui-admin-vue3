@@ -1,10 +1,4 @@
 {
-  "routes": [
-    {
-      "route": "/user",
-      "rewrite": "/user"
-    }
-  ],
   "navigationFallback": {
     "rewrite": "/index.html",
     "exclude": [
