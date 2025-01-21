@@ -73,9 +73,9 @@ const remainingRouter: AppRouteRecordRaw[] = [
   {
     path: '/user',
     component: Layout,
+    redirect: '/user/profile',
     name: 'UserInfo',
     meta: {
-      hidden: true
     },
     children: [
       {
