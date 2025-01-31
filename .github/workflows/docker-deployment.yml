@@ -3,11 +3,11 @@ name: Build and Deploy Vue to Docker
 on:
   push:
     branches:
-      - master
+      - hostinger_master
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
-      - master
+      - hostinger_master
 
 jobs:
   build:
