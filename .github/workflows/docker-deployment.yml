@@ -44,3 +44,15 @@ jobs:
 
       - name: Verify the built image
         run: docker manifest inspect ngjingchong/admin-portal:amd64
+
+      - name: Deploy to Hostinger VPS
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          script: |
+            docker pull ngjingchong/admin-portal:amd64
+            docker stop admin-portal || true
+            docker rm admin-portal || true
+            docker run -d 80:80 --name admin-portal ngjingchong/admin-portal:amd64
