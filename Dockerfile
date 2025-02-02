@@ -20,7 +20,7 @@ RUN npm run build
 FROM nginx:latest
 
 # Copy the built files from the builder stage
-COPY --from=builder /app/dist-prod /usr/share/nginx/html
+COPY --from=builder ./dist-prod /usr/share/nginx/html
 
 # Expose port 80 (default Nginx port)
 EXPOSE 80
