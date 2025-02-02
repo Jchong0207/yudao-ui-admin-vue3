@@ -56,4 +56,5 @@ jobs:
             docker pull ngjingchong/admin-portal:amd64
             docker stop admin-portal || true
             docker rm admin-portal || true
+            docker rmi $(docker images -f "dangling=true" -q) || true
             docker run -d -p 80:80 --name admin-portal ngjingchong/admin-portal:amd64
