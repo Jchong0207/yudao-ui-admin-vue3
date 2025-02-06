@@ -7,14 +7,10 @@ WORKDIR /app
 # Copy package.json and package-lock.json first to leverage Docker caching
 COPY package.json package-lock.json ./
 
-# Install dependencies
-RUN npm install
-
 # Copy the rest of the app files
 COPY . .
 
-# Build the Vue app
-RUN npm run build
+EXPOSE 8080
 
 # # Use a lightweight web server to serve the built Vue app
 # FROM nginx:latest
@@ -22,8 +18,8 @@ RUN npm run build
 # # Copy the built files from the builder stage
 # COPY --from=builder /app/dist-prod /usr/share/nginx/html
 
-# # Expose port 80 (default Nginx port)
-# EXPOSE 80
+# # Expose port 8080 (default Nginx port)
+# EXPOSE 8080
 
 # # Start Nginx server
 # CMD ["nginx", "-g", "daemon off;"]
