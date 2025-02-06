@@ -16,16 +16,14 @@ COPY . .
 # Build the Vue app
 RUN npm run build
 
+# Use a lightweight web server to serve the built Vue app
+FROM nginx:latest
+
+# Copy the built files from the builder stage
+COPY --from=builder /app/dist-prod /usr/share/nginx/html
+
+# Expose port 8080 (default Nginx port)
 EXPOSE 8080
 
-# # Use a lightweight web server to serve the built Vue app
-# FROM nginx:latest
-
-# # Copy the built files from the builder stage
-# COPY --from=builder /app/dist-prod /usr/share/nginx/html
-
-# # Expose port 8080 (default Nginx port)
-# EXPOSE 8080
-
-# # Start Nginx server
-# CMD ["nginx", "-g", "daemon off;"]
+# Start Nginx server
+CMD ["nginx", "-g", "daemon off;"]
