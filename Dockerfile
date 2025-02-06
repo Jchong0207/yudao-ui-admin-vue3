@@ -7,8 +7,14 @@ WORKDIR /app
 # Copy package.json and package-lock.json first to leverage Docker caching
 COPY package.json package-lock.json ./
 
+# Install dependencies
+RUN npm install
+
 # Copy the rest of the app files
 COPY . .
+
+# Build the Vue app
+RUN npm run build
 
 EXPOSE 8080
 
