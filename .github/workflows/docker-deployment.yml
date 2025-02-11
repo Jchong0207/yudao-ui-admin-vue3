@@ -57,6 +57,4 @@ jobs:
             docker stop admin-portal || true
             docker rm admin-portal || true
             docker rmi $(docker images -f "dangling=true" -q) || true
-            docker run -d -p 8080:8080 --name admin-portal \
-            -v /etc/nginx/conf.d/admin-portal.conf:/etc/nginx/conf.d/default.conf:ro \
-            ngjingchong/admin-portal:amd64
+            docker run -d -p 8080:8080 --name admin-portal ngjingchong/admin-portal:amd64
