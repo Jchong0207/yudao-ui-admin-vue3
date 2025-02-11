@@ -19,6 +19,9 @@ RUN npm run build
 # Use a lightweight web server to serve the built Vue app
 FROM nginx:latest
 
+# Install nano in the Nginx container
+RUN apt update && apt install -y nano
+
 # Copy the built files from the builder stage
 COPY --from=builder /app/dist-prod /usr/share/nginx/html
 
