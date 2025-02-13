@@ -20,7 +20,7 @@ RUN npm run build
 FROM nginx:latest
 
 # Install nano in the Nginx container
-RUN apt update && apt install -y nano
+RUN apt update && apt install -y certbot nano && rm -rf /var/lib/apt/lists/*
 
 # Copy the built files from the builder stage
 COPY --from=builder /app/dist-prod /usr/share/nginx/html
