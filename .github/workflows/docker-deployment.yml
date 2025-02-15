@@ -3,11 +3,11 @@ name: Build and Deploy Vue to Docker
 on:
   push:
     branches:
-      - hostinger_master
+      - ssl_config_0215
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
-      - hostinger_master
+      - ssl_config_0215
 
 jobs:
   build:
@@ -37,13 +37,13 @@ jobs:
           push: true
           platforms: linux/amd64  # Ensures it's built for AMD64
           tags: |
-            ngjingchong/admin-portal:amd64
-            ngjingchong/admin-portal:${{ github.sha }}
-          cache-from: type=registry,ref=ngjingchong/admin-portal:amd64
+            ngjingchong/dev-admin-portal:amd64
+            ngjingchong/dev-admin-portal:${{ github.sha }}
+          cache-from: type=registry,ref=ngjingchong/dev-admin-portal:amd64
           cache-to: type=inline
 
       - name: Verify the built image
-        run: docker manifest inspect ngjingchong/admin-portal:amd64
+        run: docker manifest inspect ngjingchong/dev-admin-portal:amd64
 
       - name: Deploy to Hostinger VPS
         uses: appleboy/ssh-action@v0.1.10
@@ -53,10 +53,10 @@ jobs:
           key: ${{ secrets.VPS_SSH_PRIVATE_KEY }}
           passphrase: ${{ secrets.VPS_SSH_PASSPHRASE }}
           script: |
-            docker pull ngjingchong/admin-portal:amd64
-            docker stop admin-portal || true
-            docker rm admin-portal || true
+            docker pull ngjingchong/dev-admin-portal:amd64
+            docker stop dev-admin-portal || true
+            docker rm dev-admin-portal || true
             docker rmi $(docker images -f "dangling=true" -q) || true
-            docker run -d -p 8080:8080 --name admin-portal --network application_network \
+            docker run -d -p 8085:8085 --name dev-admin-portal --network application_network \
             -v /etc/nginx/conf.d/admin-portal.conf:/etc/nginx/conf.d/default.conf \
-            ngjingchong/admin-portal:amd64
+            ngjingchong/dev-admin-portal:amd64
