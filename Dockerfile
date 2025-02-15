@@ -26,7 +26,7 @@ RUN apt update && apt install -y certbot nano && rm -rf /var/lib/apt/lists/*
 COPY --from=builder /app/dist-prod /usr/share/nginx/html
 
 # Expose port 8080 (default Nginx port)
-EXPOSE 8080
+EXPOSE 8085
 
 # Start Nginx server
 CMD ["nginx", "-g", "daemon off;"]
